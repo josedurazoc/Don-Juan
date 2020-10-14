@@ -1,0 +1,66 @@
+<app-filter-menu (checkbox)="categoryFilter($event)" [categories]="categories"></app-filter-menu>
+<ion-router-outlet id="filter"></ion-router-outlet>
+<ion-header [translucent]="true">
+  <ion-toolbar class="toolbarColor">
+    <ion-buttons slot="start">
+      <ion-menu-button color="dark"></ion-menu-button>
+    </ion-buttons>
+    <img style="display: inline;" alt="" src='{{ foto }}'>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/buscar">
+        <ion-icon color="dark" name="search-sharp"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/listaDeseo">
+        <ion-icon color="dark" name="heart-outline"></ion-icon>
+      </ion-button>
+      <ion-button class="cart" routerLink="/carroCompra">
+        <ion-icon color="dark" name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-badge slot="end" color="light">{{ count || 0 }}</ion-badge>
+  </ion-toolbar>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]='true' style="position: relative;">
+<!-- carusel de imagenes -->
+  <ion-slides [options]="sliderOptions" class="ion-padding" pager>
+    <ion-slide *ngFor="let slide of sliderImages">
+      <img [src]="slide" alt="images">
+    </ion-slide>
+  </ion-slides>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list routerLink="/categoria/category=1021&per_page=100" lines="none">
+          <ion-item>
+            <img src="../../../assets/slides/16.jpg" alt="">
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col>
+        <ion-list routerLink="/categoria/category=3213&per_page=100" lines="none">
+          <ion-item >
+            <img src="../../../assets/slides/17.jpg" alt="">
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list routerLink="/categoria/category=6891&per_page=100" lines="none">
+          <ion-item >
+            <img src="../../../assets/slides/18.jpg" alt="">
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col>
+        <ion-list routerLink="/categoria/category=2694&per_page=100" lines="none">
+          <ion-item >
+            <img src="../../../assets/slides/19.jpg" alt="">
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

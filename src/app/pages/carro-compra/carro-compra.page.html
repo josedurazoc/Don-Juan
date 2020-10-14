@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="toolbarColor">
+    <ion-buttons slot="start">
+      <ion-menu-button color="dark"></ion-menu-button>
+    </ion-buttons>
+    <img style="display: inline;" alt="" src='{{ foto }}'>
+    <ion-buttons slot="end">
+      <ion-button tab="detalleProducto">
+        <ion-icon name="search-sharp"></ion-icon>
+      </ion-button>
+      <ion-button tab="listaDeseo">
+        <ion-icon name="heart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ng-container *ngIf="cart.productData.length > 0; else showOther">
+    <ion-header collapse="condense">
+    </ion-header>
+    <app-cart-view [prod]="cart.productData"></app-cart-view>
+  </ng-container>
+  <ng-template #showOther>
+    <ion-img style="height: 60%;" [src]="fotoCarroVacio"></ion-img>
+    <div style="text-align: center;" class="d-flex ion-justify-content-center">
+      <ion-button class="ion-text-center" routerLink="/principal">
+        Ir a Comprar
+      </ion-button>
+    </div>
+  </ng-template>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar *ngIf="cart.productData.length > 0">
+    <ion-label slot="start">
+      <ion-text class="totalPrice">{{total | currency: 'MXN'}}
+        <ion-note>({{ cart.count }}) Elementos</ion-note>
+      </ion-text>
+    </ion-label>
+    <ion-buttons slot="end">
+      <ion-button class="ion-activatable ripple-parent" color="warning" expand="full" fill="solid" size="large"
+        routerLink="/checkout" (click)="ckeckout()">
+        Ir a Checkout
+        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

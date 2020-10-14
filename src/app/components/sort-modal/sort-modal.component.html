@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-list-header>
+        <ion-label>ORDENAR POR</ion-label>
+      </ion-list-header>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-radio-group (ionChange)="radioChanged($event)">
+
+      <ion-item>
+        <ion-label>Por Defecto</ion-label>
+        <ion-radio value="default"></ion-radio>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>El mas reciente primero</ion-label>
+        <ion-radio value="recent"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Mayor a Menor Precio</ion-label>
+        <ion-radio value="price-asc"></ion-radio>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>Menor a Mayor Precio</ion-label>
+        <ion-radio value="price-desc"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label> Popularidad</ion-label>
+        <ion-radio value="popularity"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label> Clasificación</ion-label>
+        <ion-radio value="classification"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+</ion-content>

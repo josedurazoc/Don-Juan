@@ -1,0 +1,65 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+          
+.menu-header-bg {
+    height: 180px;
+    width: 350px;
+    background: #fcdccc;
+    background: linear-gradient(90deg, #f8bcad 0%, #fcdccc 100%);
+    box-shadow: 0px 1px 10px rgba(245, 214, 201, 0.5);
+    transform: rotate( -15deg);
+    border-radius: 10px 10px 10px 50px;
+    margin-left: -18px;
+    margin-top: -50px;
+    margin-bottom: 60px;
+}
+
+.header-content {
+    position: absolute;
+    top: 30px;
+    left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+    border: 7px solid rgba(252, 219, 202, 0.42);
+    margin-right: 14px;
+}
+h2 {
+    font-weight: 300;
+    color: #fff;
+}
+p {
+    font-size: 12px;
+    color: #e4e4e4;
+    font-weight: 100;
+    letter-spacing: 0.4px;
+}
+.menu-items {
+    :hover {
+        font-size: 30px;
+        border-left: 5px solid;
+        color: #f8bcad;
+        padding-left: 5px;
+
+        ion-icon {
+            color: #f8bcad;
+        }
+    }
+
+    margin: 0px;
+
+    ion-item {
+        padding-left: 20px;
+        margin-bottom: 10px;
+    }
+    clase:focus {
+        border-left: 5px solid;
+        padding-left: 15px;
+    }
+
+}

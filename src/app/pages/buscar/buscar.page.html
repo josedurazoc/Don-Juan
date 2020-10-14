@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-searchbar debounce="1000" (ionChange)="search($event)" placeholder="Buscar"></ion-searchbar>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <!-- tabla de la lista de las castegorias -->
+        <ion-list *ngIf="filteredProducts.length == 0;" routerLink="/categoria/category=3213&per_page=100">
+          <ion-item *ngFor="let item of categories" lines="none">
+            <ion-label>
+              <h4>{{ item.name }}</h4>
+              <p>{{ item.count }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        <!-- tabla de la lista de resultado de los productos -->
+        <ion-list *ngIf="filteredProducts.length > 0;">
+          <ion-item *ngFor="let item of filteredProducts" lines="none">
+            <ion-thumbnail>
+              <img src="{{ item.images }}" alt="">
+              <!-- <ion-img [src]="p.images[0].src" alt="{{ p.name }}"></ion-img> -->
+            </ion-thumbnail>
+            <ion-label>
+              <h4>{{ item.name }}</h4>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        <!-- show the skeleton text  si la caja de texto es diferente de vacia-->
+        <ion-list *ngIf="showSkeleton">
+          <ion-item *ngFor="let d of [].constructor(10)" >
+            <ion-thumbnail>
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-thumbnail>
+            <ion-label>
+              <h4><ion-skeleton-text animated style="width: 60%;"></ion-skeleton-text></h4>
+            </ion-label>
+            <ion-text>
+              <h4><ion-skeleton-text animated style="width: 60%;"></ion-skeleton-text></h4>
+            </ion-text>
+          </ion-item>
+        </ion-list>
+        <!-- no items found si el termino de busqueda no encuntra un resultado-->
+        <ion-list *ngIf="showSkeleton && filteredProducts.length <= 0">
+          <p>No se encontraron resultados con la busqueda {{ terminoBusqueda }}</p>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- Cargar mas productos swipeup -->
+  <!-- <ion-infinite-scroll (ionInfinite)="loadMoreData($event)" threshold="10px">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" style="margin-bottom: 50px;"
+        loadingText="Cargando mas productos...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll> -->
+</ion-content>

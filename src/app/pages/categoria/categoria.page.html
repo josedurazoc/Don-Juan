@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button color="dark" defaultHref="/"></ion-back-button>
+      <ion-title>Categoria</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- tabla de la lista de los productos -->
+  <!-- <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item *ngFor="let prod of filteredProducts" class="item-entry" detail routerLink="/detalleProducto/{{prod.id}}">
+            <ion-thumbnail style="max-width: 80px; max-height: 80px;">
+              <ion-img [src]="prod.images" alt="{{prod.name}}"></ion-img>
+            </ion-thumbnail>
+            <ion-label class="product">
+              <h3 class="item-name">{{ prod.name }}</h3>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item detail lines="none" *ngFor="let item of product" >
+            <ion-thumbnail>
+              <!-- <img src="../../../assets/images/woocommerce.png" alt=""> -->
+              <!-- <img src="{{ item.images }}" alt=""> -->
+              <!-- <ion-img [src]="item.images[0].src"></ion-img> -->
+              <img src="{{ item.images }}" alt="">
+            </ion-thumbnail>
+            <ion-label>
+              <h3>{{ item.name }}</h3>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
