@@ -20,9 +20,7 @@ export class DetalleProductoPage implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: { product: ProductModel }) => {
       this.product = data.product;
-      console.log(this.product);
       this.showData = true;
-      this.fecha = this.product.date_created;
     });
   }
 
@@ -38,8 +36,5 @@ export class DetalleProductoPage implements OnInit {
       this.i--;
       this.quantity = this.i;
     }
-  }
-  addProduct(product: ProductModel) {
-    this.cartService.addToCart(product);
   }
 }

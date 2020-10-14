@@ -40,7 +40,6 @@ export class CategoriaPage implements OnInit {
           element.images[0] = this.productoNoEncontrado;
         }else{
           element.images = element.images[0].src;
-          console.log('Imagen ' + this.i + ' ' + element.images[0]);
         }
       });
       this.showData = true;
