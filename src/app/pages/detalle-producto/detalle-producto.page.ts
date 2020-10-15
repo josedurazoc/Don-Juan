@@ -12,7 +12,6 @@ import { CartService } from '../../services/cart.service';
 export class DetalleProductoPage implements OnInit {
   product: ProductModel;
   terminoBusqueda: any;
-  filteredProducts: any;
   constructor(private route: ActivatedRoute,
               private cartService: CartService){}
   i = 1;
@@ -28,7 +27,6 @@ export class DetalleProductoPage implements OnInit {
         } else {
           this.product.images = this.product.images[0].src;
         }
-        console.log(this.product);
     });
 }
 
