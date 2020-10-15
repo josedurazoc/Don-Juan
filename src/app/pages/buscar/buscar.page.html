@@ -11,8 +11,8 @@
     <ion-row>
       <ion-col>
         <!-- tabla de la lista de las castegorias -->
-        <ion-list *ngIf="filteredProducts.length == 0;" routerLink="/categoria/category=3213&per_page=100">
-          <ion-item *ngFor="let item of categories" lines="none">
+        <ion-list *ngIf="filteredProducts.length == 0;">
+          <ion-item *ngFor="let item of categories" lines="none" routerLink="/categoria/category={{ item.id }}&per_page=100">
             <ion-label>
               <h4>{{ item.name }}</h4>
               <p>{{ item.count }}</p>

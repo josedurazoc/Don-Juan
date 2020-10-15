@@ -11,14 +11,15 @@ import { tap } from 'rxjs/operators';
 })
 export class ProductResolverService implements Resolve<any>{
 
-constructor(private productServide: ProductService,
+constructor(private productService: ProductService,
             private loadingController: LoadingController) { }
 
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+
     const id = route.params.id;
 
-    return this.productServide.getSingleProduct(id).pipe(
+    return this.productService.getSingleProduct(id).pipe(
       tap(async () => {
         if (await this.loadingController.getTop()){
           this.loadingController.dismiss().then();

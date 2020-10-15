@@ -1,4 +1,3 @@
-import { ProductService } from './../../services/product.service';
 import { ProductModel } from './../../../models/product-model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -23,6 +22,8 @@ export class DetalleProductoPage implements OnInit {
       this.showData = true;
     });
   }
+
+  addProduct(product: ProductModel) { this.cartService.addToCart(product); }
 
   plus() {
     // donde 5 es el limite de productos en el inventario de la tienda

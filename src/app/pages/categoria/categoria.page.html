@@ -29,11 +29,12 @@
     <ion-row>
       <ion-col>
         <ion-list>
-          <ion-item detail lines="none" *ngFor="let item of product" >
+          <ion-item
+          detail
+          lines="none"
+          *ngFor="let item of product"
+          routerLink="/detalleProducto/{{ item.id }}">
             <ion-thumbnail>
-              <!-- <img src="../../../assets/images/woocommerce.png" alt=""> -->
-              <!-- <img src="{{ item.images }}" alt=""> -->
-              <!-- <ion-img [src]="item.images[0].src"></ion-img> -->
               <img src="{{ item.images }}" alt="">
             </ion-thumbnail>
             <ion-label>
