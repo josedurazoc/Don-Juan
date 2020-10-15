@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { HomePage } from './home.page';
+import { CategoryResolverService } from '../services/CategoryResolverService';
 
 const routes: Routes = [
   {
@@ -43,7 +44,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('../pages/categoria/categoria.module').then(
             m => m.CategoriaPageModule),
-        resolve: { product: ProductResolverService }
+        resolve: { product: CategoryResolverService }
       },
       {
         path: 'detalleProducto/:id',
@@ -93,6 +94,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+exports: [RouterModule]
 })
 export class HomeRouter { }

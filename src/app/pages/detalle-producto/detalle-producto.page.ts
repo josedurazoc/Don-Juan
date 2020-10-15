@@ -1,3 +1,4 @@
+import { ProductService } from './../../services/product.service';
 import { ProductModel } from './../../../models/product-model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -10,18 +11,26 @@ import { CartService } from '../../services/cart.service';
 })
 export class DetalleProductoPage implements OnInit {
   product: ProductModel;
-  showData = false;
-  constructor(private route: ActivatedRoute, private cartService: CartService) { }
+  terminoBusqueda: any;
+  filteredProducts: any;
+  constructor(private route: ActivatedRoute,
+              private cartService: CartService){}
   i = 1;
   precio = 5;
+  productoNoEncontrado = '../../../assets/images/woocommerce.png';
   quantity: number = this.i;
   fecha: string;
   ngOnInit() {
     this.route.data.subscribe((data: { product: ProductModel }) => {
-      this.product = data.product;
-      this.showData = true;
+        this.product = data.product;
+        if (this.product.images.length < 1) {
+          this.product.images[0] = this.productoNoEncontrado;
+        } else {
+          this.product.images = this.product.images[0].src;
+        }
+        console.log(this.product);
     });
-  }
+}
 
   addProduct(product: ProductModel) { this.cartService.addToCart(product); }
 

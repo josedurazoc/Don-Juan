@@ -12,7 +12,7 @@
       <ion-col>
         <!-- tabla de la lista de las castegorias -->
         <ion-list *ngIf="filteredProducts.length == 0;">
-          <ion-item *ngFor="let item of categories" lines="none" routerLink="/categoria/category={{ item.id }}&per_page=100">
+          <ion-item *ngFor="let item of categories" lines="none" routerLink="/categoria/{{ item.id }}">
             <ion-label>
               <h4>{{ item.name }}</h4>
               <p>{{ item.count }}</p>
@@ -21,13 +21,15 @@
         </ion-list>
         <!-- tabla de la lista de resultado de los productos -->
         <ion-list *ngIf="filteredProducts.length > 0;">
-          <ion-item *ngFor="let item of filteredProducts" lines="none">
+          <ion-item 
+          *ngFor="let prod of filteredProducts" 
+          lines="none" routerLink="/detalleProducto/{{ prod.id }}">
             <ion-thumbnail>
-              <img src="{{ item.images }}" alt="">
+              <img src="{{ prod.images }}" alt="{{ prod.name }}">
               <!-- <ion-img [src]="p.images[0].src" alt="{{ p.name }}"></ion-img> -->
             </ion-thumbnail>
             <ion-label>
-              <h4>{{ item.name }}</h4>
+              <h4>{{ prod.name }}</h4>
             </ion-label>
           </ion-item>
         </ion-list>

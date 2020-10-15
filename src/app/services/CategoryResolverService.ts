@@ -9,7 +9,7 @@ import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductResolverService implements Resolve<any>{
+export class CategoryResolverService implements Resolve<any>{
 
 constructor(private productService: ProductService,
             private loadingController: LoadingController) { }
@@ -17,7 +17,7 @@ constructor(private productService: ProductService,
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const id = route.params.id;
-    return this.productService.getSingleProduct(id).pipe(
+    return this.productService.getAllProductsCategories(id).pipe(
       tap(async () => {
         if (await this.loadingController.getTop()){
           this.loadingController.dismiss().then();

@@ -14,26 +14,25 @@ export class ProductService {
     private cs = environment.readOnlyKeys.consumer_secret;
 
     constructor(private httpClient: HttpClient) {}
-
+    // todos los productos
     getAllProducts(): Observable<ProductModel[]>{
         return this.httpClient.get<ProductModel[]>(`${this.url}products?orderby=title&order=asc&per_page=100`);
     }
+    // todos los productos de una categoria en espesifico
     getAllProductsCategories(keyword: string): Observable<ProductModel[]>{
         return this.httpClient.get<ProductModel[]>(`${this.url}products?category=${keyword}&order=asc&orderby=title&per_page=100`);
     }
-
+    // obtener un solo producto
     getSingleProduct(id: number): Observable<ProductModel> {
-        return this.httpClient.get<ProductModel>(`${this.url}products?${id}`);
+        return this.httpClient.get<ProductModel>(`${this.url}products/${id}`);
     }
-
+    // buscar un producto
     searchProducts(keyword: string): Observable<ProductModel[]>{
         return this.httpClient.get<ProductModel[]>(`${this.url}products?search=${keyword}&order=asc&orderby=title&per_page=100`);
     }
+    // obtener todas las categorias
     getAllCategories(): Observable<CategoryModel[]>{
         return this.httpClient.get<CategoryModel[]>(`${this.url}products/categories?per_page=100`);
     }
 
-    getAllProductsSearched(): Observable<ProductModel[]>{
-        return this.httpClient.get<ProductModel[]>(`${this.url}products?order=asc&orderby=title&per_page=100`);
-    }
 }

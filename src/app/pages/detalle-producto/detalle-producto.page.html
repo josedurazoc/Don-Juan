@@ -10,7 +10,8 @@
 <ion-content>
   <ion-slides class="ion-padding">
     <ion-slide *ngFor="let i of product?.images" >
-      <ion-img [src]="i?.src" alt="product?.name"></ion-img>
+      <img src="{{ product?.images }}" alt="{{ product?.name }}">
+      <!-- <ion-img [src]="i.images" alt=""></ion-img> -->
     </ion-slide>
   </ion-slides>
 
@@ -22,29 +23,20 @@
         <ion-card>
           <ion-card-header>
             <ion-card-title>
-              <h2>{{ product?.name }}</h2>
+              <!-- <h2>nombre del producto</h2> -->
+              <h2>{{ product.name }}</h2>
             </ion-card-title>
             <ion-card-subtitle>
-              <ion-chip *ngFor="let c of product?.categories" >
+              <ion-chip *ngFor="let c of product?.categories" color="secondary">
                 {{ c?.name }}
               </ion-chip>
             </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
             <ion-label>
-              <ion-button color="dark" (click)="minus()" fill="clear">
-                <ion-icon name="remove-outline"></ion-icon>
-              </ion-button>
-              {{ quantity }}
-              <ion-button color="dark" (click)="plus()" fill="clear">
-                <ion-icon name="add-outline"></ion-icon>
-              </ion-button>
-            </ion-label>
-            <ion-label>
-              <p>{{ product?.description }}
-              </p>
+              <p>{{ product?.description }}</p>
               <ion-text>
-                <p>Precio</p>
+                <p>Precio: {{ product?.price }}</p>
               </ion-text>
             </ion-label>
           </ion-card-content>

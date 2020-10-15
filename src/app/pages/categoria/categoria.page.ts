@@ -32,6 +32,7 @@ export class CategoriaPage implements OnInit {
   precio = 5;
   quantity: number = this.i;
   ngOnInit() {
+    this.route.data.subscribe()
     this.route.data.subscribe((data: { product: ProductModel[] }) => {
       this.product = data.product;
       this.product.forEach(element => {

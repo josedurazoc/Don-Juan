@@ -33,7 +33,7 @@
           detail
           lines="none"
           *ngFor="let item of product"
-          routerLink="/detalleProducto/{{ item.id }}">
+          (click)="cargarDatos($event)">
             <ion-thumbnail>
               <img src="{{ item.images }}" alt="">
             </ion-thumbnail>
