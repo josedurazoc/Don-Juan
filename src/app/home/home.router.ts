@@ -87,6 +87,12 @@ const routes: Routes = [
         loadChildren: () =>
         import('../pages/gracias/gracias.module').then(
           m => m.GraciasPageModule)
+      },
+      {
+        path: 'maps',
+        loadChildren: () =>
+        import('../pages/maps/maps.module').then(
+          m => m.MapsPageModule)
       }
     ]
   }

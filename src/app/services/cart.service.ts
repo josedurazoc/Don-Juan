@@ -47,7 +47,6 @@ export class CartService {
       backdropDismiss: false,
       showBackdrop: true
     });
-
     const alert = await this.alertController.create({
       header: 'Carrito actualizado',
       buttons: [
@@ -72,7 +71,6 @@ export class CartService {
       backdropDismiss: false,
       cssClass: 'addProduct'
     });
-
     const toast = await this.toastController.create({
       message: 'Only 5 allowed in cart',
       header: 'Max Quantity Reached',
@@ -88,15 +86,13 @@ export class CartService {
         }
       ]
     });
-
     await loader.present().then();
-
     // when the cart is not completely empty
     if (this.CartDataArray.count !== 0) {
       // calculate Index
       const index = this.CartDataArray.productData.findIndex(p => p.id === product.id);
 
-      // if there is a match, that means the index is npt equals to -1
+      // if there is a match, that means the index is not equals to -1
       if (index > -1) {
         // Limit the max purchasable quantity to 5 per product per order
         if (this.CartDataArray.productData[index].in_cart > 5) {
@@ -128,6 +124,7 @@ export class CartService {
       }
       // when the cart is absolutely empty
     } else {
+      product.stock_status = '4';
       this.CartDataArray.productData.push({...product, in_cart: 1});
       this.CartDataArray.count = this.CartDataArray.productData.length;
       this.calculateTotal();
@@ -175,18 +172,10 @@ export class CartService {
     this.calculateTotal();
     this.cartData$.next(this.CartDataArray);
   }
-  get cartData(): Observable<CartModel> {
-    return this.cartData$.asObservable();
-  }
-  get cartTotal(): Observable<number>{
-    return this.totalAmount$.asObservable();
-  }
-  getAllPaymentGateways() {
-    return this.httpClient.get(`${this.serverUrl}/payment_gateways`);
-  }
-  getTaxes() {
-    return this.httpClient.get(`${this.serverUrl}/taxes`);
-  }
+  get cartData(): Observable<CartModel> {return this.cartData$.asObservable(); }
+  get cartTotal(): Observable<number>{ return this.totalAmount$.asObservable();}
+  getAllPaymentGateways() { return this.httpClient.get(`${this.serverUrl}/payment_gateways`); }
+  getTaxes() { return this.httpClient.get(`${this.serverUrl}/taxes`); }
   async createOrder(orderData: OrderModel) {
     let headers = new HttpHeaders().set('WriteObject', '');
     headers = headers.set('Content-Type', 'application/json');

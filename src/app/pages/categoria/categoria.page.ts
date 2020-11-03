@@ -27,15 +27,15 @@ export class CategoriaPage implements OnInit {
     private productService: ProductService,
     private route: ActivatedRoute,
     private cartService: CartService) { }
-
+  cat = [];
   i = 0;
   precio = 5;
   quantity: number = this.i;
   ngOnInit() {
-    this.route.data.subscribe()
     this.route.data.subscribe((data: { product: ProductModel[] }) => {
       this.product = data.product;
       this.product.forEach(element => {
+        console.log('categorias: ' + element.categories[0]);
         if (element.images.length < 1) {
           this.i++;
           element.images[0] = this.productoNoEncontrado;

@@ -10,7 +10,7 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <!-- tabla de la lista de las castegorias -->
+        <!-- tabla de la lista de las categorias -->
         <ion-list *ngIf="filteredProducts.length == 0;">
           <ion-item *ngFor="let item of categories" lines="none" routerLink="/categoria/{{ item.id }}">
             <ion-label>

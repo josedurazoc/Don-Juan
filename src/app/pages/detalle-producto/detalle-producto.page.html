@@ -1,26 +1,23 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons>
-      <ion-back-button color="dark" defaultHref="/"></ion-back-button>
+      <ion-back-button color="dark" text="Back"></ion-back-button>
       <ion-title>Detalles del Producto</ion-title>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-slides class="ion-padding">
-    <ion-slide *ngFor="let i of product?.images" >
-      <img src="{{ product?.images }}" alt="{{ product?.name }}">
-      <!-- <ion-img [src]="i.images" alt=""></ion-img> -->
-    </ion-slide>
-  </ion-slides>
-
-  <ion-item-divider></ion-item-divider>
-
   <ion-grid class="ion-no-padding">
     <ion-row class="ion-no-padding">
       <ion-col class="ion-no-padding">
         <ion-card>
+          <ion-slides class="ion-padding" pager>
+            <ion-slide *ngFor="let i of product?.images">
+              <!-- <img style="max-width: 120px; max-height: 120px;" src="{{ i.images }}" alt="i.name"> -->
+              <ion-img [src]="i?.src" alt="{{ product?.name }}"></ion-img>
+            </ion-slide>
+          </ion-slides>
           <ion-card-header>
             <ion-card-title>
               <!-- <h2>nombre del producto</h2> -->
@@ -29,15 +26,24 @@
             <ion-card-subtitle>
               <ion-chip *ngFor="let c of product?.categories" color="secondary">
                 {{ c?.name }}
-              </ion-chip>
+              </ion-chip>              
             </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
             <ion-label>
               <p>{{ product?.description }}</p>
-              <ion-text>
-                <p>Precio: {{ product?.price }}</p>
-              </ion-text>
+              <div *ngIf="product.price != '0'; then thenBlock"></div>
+              <ng-template #thenBlock>
+                <ion-text>
+                  <p>Precio: {{ product?.price | currency:'MXN' }}</p>
+                </ion-text>
+              </ng-template>
+              <div *ngIf="product.stock_quantity > 0; then thenBlock2"></div>
+              <ng-template #thenBlock2>
+                <ion-text>
+                  <p> Disponibles: {{ product?.stock_quantity }} </p>
+                </ion-text>
+              </ng-template>
             </ion-label>
           </ion-card-content>
         </ion-card>
@@ -48,7 +54,7 @@
 <ion-footer>
   <ion-toolbar style="padding: 0 10px;">
     <ion-label>
-      <ion-button color="dark" expand="full" fill="solid">
+      <ion-button color="dark" expand="full" fill="solid" (click)="addProduct(product)">
         Añadir al carrito
       </ion-button>
     </ion-label>

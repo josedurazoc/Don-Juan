@@ -18,6 +18,9 @@ export class ProductService {
     getAllProducts(): Observable<ProductModel[]>{
         return this.httpClient.get<ProductModel[]>(`${this.url}products?orderby=title&order=asc&per_page=100`);
     }
+    getProducts(): Observable<ProductModel[]>{
+        return this.httpClient.get<ProductModel[]>(`${this.url}products?orderby=title&order=asc`);
+    }
     // todos los productos de una categoria en espesifico
     getAllProductsCategories(keyword: string): Observable<ProductModel[]>{
         return this.httpClient.get<ProductModel[]>(`${this.url}products?category=${keyword}&order=asc&orderby=title&per_page=100`);

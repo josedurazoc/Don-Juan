@@ -14,6 +14,9 @@ export class CarroCompraPage implements OnInit {
   cart: CartModel;
   displayedList: ProductModel[] = [];
 
+  i = 1;
+  quantity: number = this.i;
+  limite = 5;
   total: number;
   foto = '../../../assets/images/don_juan_splash.png';
   fotoCarroVacio = '../../../assets/images/empty-cart.png';
@@ -121,9 +124,23 @@ export class CarroCompraPage implements OnInit {
       }
     }
   }
-
   ckeckout() {
 
+  }
+  plus() {
+    console.log(this.limite);
+    // donde 5 es el limite de productos en el inventario de la tienda
+    if (this.i < this.limite) {
+      this.i++;
+      this.quantity = this.i;
+    }
+  }
+  minus() {
+    console.log(this.limite);
+    if (this.i !== 1 && this.i > 0) {
+      this.i--;
+      this.quantity = this.i;
+    }
   }
 
 }

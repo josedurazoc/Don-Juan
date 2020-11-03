@@ -14,35 +14,12 @@ export class DetalleProductoPage implements OnInit {
   terminoBusqueda: any;
   constructor(private route: ActivatedRoute,
               private cartService: CartService){}
-  i = 1;
-  precio = 5;
+
   productoNoEncontrado = '../../../assets/images/woocommerce.png';
-  quantity: number = this.i;
-  fecha: string;
   ngOnInit() {
     this.route.data.subscribe((data: { product: ProductModel }) => {
         this.product = data.product;
-        if (this.product.images.length < 1) {
-          this.product.images[0] = this.productoNoEncontrado;
-        } else {
-          this.product.images = this.product.images[0].src;
-        }
     });
 }
-
   addProduct(product: ProductModel) { this.cartService.addToCart(product); }
-
-  plus() {
-    // donde 5 es el limite de productos en el inventario de la tienda
-    if (this.i < 5) {
-      this.i++;
-      this.quantity = this.i;
-    }
-  }
-  minus() {
-    if (this.i !== 1 && this.i > 0) {
-      this.i--;
-      this.quantity = this.i;
-    }
-  }
 }

@@ -14,4 +14,5 @@ export interface ProductModel {
     stock_status: string;
     in_cart?: number;
     date_created?: string;
+    short_description: string;
 }

@@ -5,16 +5,19 @@
     </ion-buttons>
     <img style="display: inline;" alt="" src='{{ foto }}'>
     <ion-buttons slot="end">
-      <ion-button tab="detalleProducto">
-        <ion-icon name="search-sharp"></ion-icon>
+      <ion-button routerLink="/buscar">
+        <ion-icon color="dark" name="search-sharp"></ion-icon>
       </ion-button>
-      <ion-button tab="listaDeseo">
-        <ion-icon name="heart-outline"></ion-icon>
+      <ion-button routerLink="/listaDeseo">
+        <ion-icon color="dark" name="heart-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+  <ion-toolbar>
+  </ion-toolbar>
 </ion-header>
 
+<!-- skeleton cuando el carrito esta vacio -->
 <ion-content fullscreen="true">
   <ng-container *ngIf="cart.productData.length > 0; else showOther">
     <ion-header collapse="condense">
@@ -35,13 +38,13 @@
   <ion-toolbar *ngIf="cart.productData.length > 0">
     <ion-label slot="start">
       <ion-text class="totalPrice">{{total | currency: 'MXN'}}
-        <ion-note>({{ cart.count }}) Elementos</ion-note>
+        <ion-note>({{ cart.count }})Elementos</ion-note>
       </ion-text>
     </ion-label>
     <ion-buttons slot="end">
       <ion-button class="ion-activatable ripple-parent" color="warning" expand="full" fill="solid" size="large"
         routerLink="/checkout" (click)="ckeckout()">
-        Ir a Checkout
+        Finalizar compra
         <ion-ripple-effect type="unbounded"></ion-ripple-effect>
       </ion-button>
     </ion-buttons>

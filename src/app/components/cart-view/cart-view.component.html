@@ -17,18 +17,43 @@
             <ion-item lines="none">
               <ion-label class="price">
                 <ion-text color="price-inner">
-                  <h3>{{ p.price | currency: 'MXN' }}</h3>&nbsp;&nbsp;
+                  <h3 class="display">{{ p.price | currency: 'MXN' }}</h3>
                 </ion-text>
               </ion-label>
-              <ion-label class="d-flex align-items-center border border-light-updated">
+              <ion-label>
                 <ion-text>Cantidad</ion-text>
-                <ion-select value="{{ p.in_cart }}" (ionChange)="updateQuantity(p, $event, i)">
-                  <ion-select-option value="1">1</ion-select-option>
-                  <ion-select-option value="2">2</ion-select-option>
-                  <ion-select-option value="3">3</ion-select-option>
-                  <ion-select-option value="4">4</ion-select-option>
-                  <ion-select-option value="5">5</ion-select-option>
-                </ion-select>
+              </ion-label>
+              <ion-label class="d-flex align-items-center border border-light-updated">
+                <div *ngIf="p.in_cart > 1; then thenBlock1 else elseBlock1"></div>
+                <ng-template #thenBlock1>
+                  <ion-button class="display" (click)="minus(p, $event , i)" expand="block" fill="clear" shape="round">
+                    <ion-icon name="remove-outline"></ion-icon>
+                  </ion-button>
+                </ng-template>
+                <ng-template #elseBlock1>
+                  <ion-button class="display" disabled (click)="minus(p, $event , i)" expand="block" fill="clear"
+                    shape="round">
+                    <ion-icon name="remove-outline"></ion-icon>
+                  </ion-button>
+                </ng-template>
+                <ion-input class="display" disabled value="{{ p.in_cart }}" (ionChange)="updateQuantity2(p, $event , i)"
+                  type="number">
+                </ion-input>
+                <!-- p.in_cart < p.stock_quantity || p.stock_quantity != null -->
+                <div
+                  *ngIf="p.in_cart < p.stock_quantity || !(p.stock_quantity != null); then thenBlock2 else elseBlock2">
+                </div>
+                <ng-template #thenBlock2>
+                  <ion-button class="display" (click)="plus(p, $event , i)" expand="block" fill="clear" shape="round">
+                    <ion-icon name="add-outline"></ion-icon>
+                  </ion-button>
+                </ng-template>
+                <ng-template #elseBlock2>
+                  <ion-button class="display" disabled (click)="plus(p, $event , i)" expand="block" fill="clear"
+                    shape="round">
+                    <ion-icon name="add-outline"></ion-icon>
+                  </ion-button>
+                </ng-template>
               </ion-label>
             </ion-item>
             <ion-item-divider></ion-item-divider>
