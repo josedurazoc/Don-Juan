@@ -57,7 +57,7 @@ export class CheckoutPage implements OnInit {
   };
   ngOnInit() { }
   async openPage() {
-  let headers = new HttpHeaders();
+  const headers = new HttpHeaders();
   headers.append('Content-Type', 'application/json');
   const url = environment.backend_api_url + 'orders?' + 'consumer_key=' +
     environment.readOnlyKeys.consumer_key + '&consumer_secret=' + environment.readOnlyKeys.consumer_secret;
@@ -71,21 +71,4 @@ export class CheckoutPage implements OnInit {
       }
     );
 }
-
-  //   addOrder() {
-  // tslint:disable-next-line: max-line-length
-  // // https://www.autorefaccionesonline.com/wp-json/wc/v3/orders?consumer_key=ck_51286bf27ce01c3fbf0cae4e35bb7456d789448d&consumer_secret=cs_72382185337abe4f3f1f9d727deb9c5fd21f23a5
-  //   const url = environment.backend_api_url;
-  //   console.log(url);
-  //   this.http.post('', this.createOrderData)
-  //     .subscribe(
-  //       async data => {
-  //         console.log('Order successfully created', data);
-  //       },
-  //       async error => {
-  //         console.log('Error', error);
-  //       }
-  //     );
-  // }
-
 }
